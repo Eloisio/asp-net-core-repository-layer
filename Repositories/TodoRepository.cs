@@ -28,4 +28,11 @@ public class TodoRepository
             .AsNoTracking()
             .ToList();
     }
+
+    public Todo Create(Todo todo)
+    {
+        _context.Add(todo);
+        _context.SaveChanges();
+        return todo;
+    }
 }

@@ -28,8 +28,7 @@ public class TodoService
     public void Create(FormTodoViewModel data)
     {
         var todo = new Todo(data.Title, data.Date);
-        _context.Add(todo);
-        _context.SaveChanges();
+        _repository.Create(todo);
     }
 
     public FormTodoViewModel FindById(int id)
