@@ -50,4 +50,10 @@ public class TodoRepository
         _context.SaveChanges();
         return todo;
     }
+
+    public void Delete(Todo todo)
+    {
+        _context.Remove(todo);
+        _context.SaveChanges();
+    }
 }

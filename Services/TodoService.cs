@@ -1,4 +1,3 @@
-using TWTodoList.Contexts;
 using TWTodoList.Exceptions;
 using TWTodoList.Models;
 using TWTodoList.Repositories;
@@ -8,12 +7,10 @@ namespace TWTodoList.Services;
 
 public class TodoService
 {
-    private readonly AppDbContex _context;
     private readonly TodoRepository _repository;
 
-    public TodoService(AppDbContex context, TodoRepository repository)
+    public TodoService(TodoRepository repository)
     {
-        _context = context;
         _repository = repository;
     }
 
@@ -48,15 +45,14 @@ public class TodoService
     public void DeleteById(int id)
     {
         var todo = findByIdOrElseThrow(id);
-        _context.Remove(todo);
-        _context.SaveChanges();
+        _repository.Delete(todo);
     }
 
     public void ToComplete(int id)
     {
         var todo = findByIdOrElseThrow(id);
         todo.IsCompleted = true;
-        _context.SaveChanges();
+        _repository.Update(todo);
     }
 
     private Todo findByIdOrElseThrow(int id)
