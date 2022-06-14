@@ -42,7 +42,7 @@ public class TodoService
         var todo = findByIdOrElseThrow(id);
         todo.Title = data.Title;
         todo.Date = data.Date;
-        _context.SaveChanges();
+        _repository.Update(todo);
     }
 
     public void DeleteById(int id)
@@ -61,7 +61,7 @@ public class TodoService
 
     private Todo findByIdOrElseThrow(int id)
     {
-        var todo = _context.Todos.Find(id);
+        var todo = _repository.FindById(id);
         if (todo is null)
         {
             throw new TodoNotFoundException();

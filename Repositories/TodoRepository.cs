@@ -35,4 +35,19 @@ public class TodoRepository
         _context.SaveChanges();
         return todo;
     }
+
+    public Todo? FindById(int id)
+    {
+        return _context.Todos
+            .Where(x => x.Id == id)
+            .AsNoTracking()
+            .FirstOrDefault();
+    }
+
+    public Todo Update(Todo todo)
+    {
+        _context.Todos.Update(todo);
+        _context.SaveChanges();
+        return todo;
+    }
 }
