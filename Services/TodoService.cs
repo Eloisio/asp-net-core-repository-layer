@@ -1,6 +1,7 @@
 using TWTodoList.Contexts;
 using TWTodoList.Exceptions;
 using TWTodoList.Models;
+using TWTodoList.Repositories;
 using TWTodoList.ViewModels;
 
 namespace TWTodoList.Services;
@@ -8,10 +9,12 @@ namespace TWTodoList.Services;
 public class TodoService
 {
     private readonly AppDbContex _context;
+    private readonly TodoRepository _repository;
 
-    public TodoService(AppDbContex context)
+    public TodoService(AppDbContex context, TodoRepository repository)
     {
         _context = context;
+        _repository = repository;
     }
 
     public ListTodoViewModel FindAll()
