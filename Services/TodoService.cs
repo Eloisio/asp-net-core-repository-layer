@@ -19,8 +19,10 @@ public class TodoService
 
     public ListTodoViewModel FindAll()
     {
-        var todos = _context.Todos.OrderBy(x => x.Date).ToList();
-        return new ListTodoViewModel { Todos = todos };
+        return new ListTodoViewModel
+        {
+            Todos = _repository.FindAll(x => x.Date)
+        };
     }
 
     public void Create(FormTodoViewModel data)
